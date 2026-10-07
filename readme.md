@@ -10,11 +10,19 @@ The solution was developed and tested for **DARK ZERO RADIO** by **Paul Paradoxx
 
 It is designed for radio stations using **AzuraCast** with **Liquidsoap** and is intended to automate the laut.fm advertising trigger without requiring the live DJ to manually trigger the break.
 
+The automation runs directly on the **AzuraCast / Liquidsoap** side.
+
+The live DJ can continue broadcasting normally while the START_AD_BREAK trigger is handled automatically in the background.
+
 ## Why This Project?
 
 During a live DJ broadcast, the laut.fm advertising trigger needs to be triggered correctly.
 
 In practice, a DJ may forget to trigger the advertising break manually, or the DJ software being used may not provide a suitable way to automate the required laut.fm trigger.
+
+At **DARK ZERO RADIO**, some DJs and moderators were also partially overwhelmed by having to manually trigger the advertising break during their live broadcasts.
+
+A live DJ should be able to concentrate on the music, moderation and broadcast instead of having to remember an additional technical trigger.
 
 This project moves the automation to the **AzuraCast / Liquidsoap** side.
 
@@ -29,8 +37,13 @@ The solution is independent of the DJ software being used.
 - Designed for AzuraCast and Liquidsoap
 - Independent of the DJ software being used
 - No DJ stream reconnection required
+- No manual START_AD_BREAK triggering required
+- No separate START_AD_BREAK playlist required
+- Uses a single `start_ad_break.mp3` file
 - Automatic trigger at a configurable interval
 - Immediate trigger when switching between LIVE and AUTODJ
+- Works during LIVE operation
+- Works during AUTODJ operation
 - Uses a native Liquidsoap request queue
 - Tested in the live operation of DARK ZERO RADIO
 
@@ -53,6 +66,84 @@ The default public version uses an interval of:
 
 The interval can be changed to suit the requirements of the individual station.
 
+The automation runs in the background and does not require the DJ to manually trigger the advertising break.
+
+## No START_AD_BREAK Playlist Required
+
+A separate START_AD_BREAK playlist is **not required**.
+
+The station only needs one MP3 file:
+
+`start_ad_break.mp3`
+
+This file is placed once on the AzuraCast server in the media directory of the corresponding station.
+
+After the file has been placed on the server and the Liquidsoap configuration has been installed, the automation handles the START_AD_BREAK automatically.
+
+There is no need to create or maintain a separate START_AD_BREAK playlist.
+
+In simple terms:
+
+**Place the MP3 on the server → configure Liquidsoap → restart broadcasting → done.**
+
+The automation then runs automatically in the background.
+
+## LIVE and AUTODJ
+
+The solution works in both operating modes:
+
+- LIVE DJ
+- AUTODJ
+
+The automation also handles changes between:
+
+- LIVE → AUTODJ
+- AUTODJ → LIVE
+
+When the operating mode changes, a `START_AD_BREAK` is automatically triggered.
+
+No separate configuration is required for LIVE and AUTODJ.
+
+## DJ Software Independence
+
+It does not matter which compatible broadcasting software the DJ uses.
+
+For example:
+
+- Mixxx
+- VirtualDJ
+- RadioBOSS
+- Liquidsoap
+- another compatible DJ or broadcasting application
+
+The START_AD_BREAK automation is handled on the **AzuraCast / Liquidsoap** side.
+
+The DJ therefore does not need to use a specific DJ application.
+
+The automation works independently of the software used for the actual DJ broadcast.
+
+## No Additional Work for DJs
+
+The main purpose of the automation is to remove the additional technical task from the DJ.
+
+The DJ does not need to:
+
+- manually trigger START_AD_BREAK
+- restart the DJ software
+- reconnect the stream
+- use a specific DJ application
+- manage a START_AD_BREAK playlist
+- remember the advertising interval during the live broadcast
+
+The automation runs in the background.
+
+The DJ can concentrate on:
+
+- music
+- moderation
+- the live broadcast
+- interaction with listeners
+
 ## Requirements
 
 - AzuraCast
@@ -60,6 +151,10 @@ The interval can be changed to suit the requirements of the individual station.
 - A working AzuraCast station
 - A `start_ad_break.mp3` file available to the station
 - laut.fm integration
+
+Only **one `start_ad_break.mp3` file** is required.
+
+A separate START_AD_BREAK playlist is **not required**.
 
 ## Installation
 
@@ -72,6 +167,22 @@ Before using the code, replace:
 with the actual station identifier used by the AzuraCast installation.
 
 The path to the `start_ad_break.mp3` file must also exist on the station.
+
+The public configuration uses:
+
+`/var/azuracast/stations/YOUR_STATION/media/start_ad_break.mp3`
+
+The `start_ad_break.mp3` file must be placed in the corresponding station media directory.
+
+### Basic Setup
+
+1. Place `start_ad_break.mp3` on the AzuraCast server.
+2. Place it in the media directory of the appropriate station.
+3. Replace `YOUR_STATION` with the correct station identifier.
+4. Add the Liquidsoap code to the station's custom Liquidsoap configuration.
+5. Save the configuration.
+6. Restart the station's broadcasting / Liquidsoap process.
+7. The automation runs automatically.
 
 ### Important
 
@@ -87,6 +198,7 @@ The default interval is:
 
 Examples:
 
+- 5 minutes = 300 seconds
 - 10 minutes = 600 seconds
 - 15 minutes = 900 seconds
 - 20 minutes = 1200 seconds
@@ -96,6 +208,16 @@ Examples:
 - 39 minutes = 2340 seconds
 
 Only the interval needs to be changed when a different timing is required.
+
+For testing purposes, a shorter interval can be used temporarily.
+
+The public version uses:
+
+`1500.`
+
+which corresponds to:
+
+**25 minutes.**
 
 ## laut.fm Integration
 
@@ -119,8 +241,11 @@ The DJ therefore does not need to:
 - restart the DJ software
 - manually trigger every advertising break
 - use a specific DJ application
+- manage a START_AD_BREAK playlist
 
 The solution is intended to work independently of whether the DJ uses software such as Mixxx, RadioBOSS, VirtualDJ or another compatible broadcasting application.
+
+The DJ can concentrate on the actual broadcast.
 
 ## Development and Testing
 
@@ -137,6 +262,8 @@ Particular attention was given to:
 - LIVE/AUTODJ mode changes
 - automatic interval triggering
 - operation without reconnecting the DJ stream
+- operation without a START_AD_BREAK playlist
+- automatic operation using only the `start_ad_break.mp3` file
 
 The current public configuration uses a **25-minute interval**.
 
