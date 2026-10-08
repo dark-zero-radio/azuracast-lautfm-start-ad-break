@@ -39,7 +39,7 @@ The solution is independent of the DJ software being used.
 - No DJ stream reconnection required
 - No manual START_AD_BREAK triggering required
 - No separate START_AD_BREAK playlist required
-- Includes a `START_AD_BREAK.mp3` Commercial Break audio file
+- Uses a single `start_ad_break.mp3` file
 - Automatic trigger at a configurable interval
 - Immediate trigger when switching between LIVE and AUTODJ
 - Works during LIVE operation
@@ -72,11 +72,11 @@ The automation runs in the background and does not require the DJ to manually tr
 
 A separate START_AD_BREAK playlist is **not required**.
 
-The required Commercial Break MP3 has been included by **Paul Paradoxx / DARK ZERO RADIO** directly in this GitHub repository.
+The station only needs one MP3 file:
 
-The included file is:
+`start_ad_break.mp3`
 
-`START_AD_BREAK.mp3`
+The required Commercial Break MP3 has been included in this GitHub repository by **Paul Paradoxx / DARK ZERO RADIO**.
 
 For **DARK ZERO RADIO**, this file is used as a short **Commercial Break** teaser.
 
@@ -92,25 +92,27 @@ The intended behavior is for the Commercial Break teaser to be played **before t
 
 Other stations can use their own **station teaser** or their own short Commercial Break audio for this purpose.
 
-However, when using the included Liquidsoap configuration, the file must be named exactly:
+However, the file must be named exactly:
 
 `start_ad_break.mp3`
 
-The filename is required because it is referenced directly by the Liquidsoap configuration.
+This filename is required because it is referenced directly by the Liquidsoap configuration.
 
-The included `START_AD_BREAK.mp3` file can therefore be renamed to:
+The Commercial Break MP3 included in this repository can be renamed to:
 
 `start_ad_break.mp3`
 
-before it is placed in the AzuraCast station media directory.
+before it is placed on the AzuraCast server.
 
-The file only needs to be placed once on the AzuraCast server in the media directory of the corresponding station.
+The file is placed once on the AzuraCast server in the media directory of the corresponding station.
+
+After the file has been placed on the server and the Liquidsoap configuration has been installed, the automation handles the START_AD_BREAK automatically.
 
 There is no need to create or maintain a separate START_AD_BREAK playlist.
 
 In simple terms:
 
-**The Commercial Break MP3 is already included in this GitHub project → place it in the AzuraCast station media directory → configure Liquidsoap → restart broadcasting → done.**
+**The Commercial Break MP3 is already included in this GitHub project → place it on your AzuraCast station → configure Liquidsoap → restart broadcasting → done.**
 
 The automation then runs automatically in the background.
 
@@ -182,39 +184,61 @@ Only **one `start_ad_break.mp3` file** is required.
 
 A separate START_AD_BREAK playlist is **not required**.
 
-The repository already contains a Commercial Break MP3 supplied by **Paul Paradoxx / DARK ZERO RADIO**.
+The repository already contains the Commercial Break MP3 supplied by **Paul Paradoxx / DARK ZERO RADIO**.
 
 ## Installation
 
 The code is intended to be added to the station's custom Liquidsoap configuration in AzuraCast.
 
+### IMPORTANT: YOUR OWN RADIO STATION
+
 Before using the code, replace:
 
 `YOUR_STATION`
 
-with the actual station identifier used by the AzuraCast installation.
+with the **name / identifier of your own AzuraCast radio station**.
 
-The path to the `start_ad_break.mp3` file must also exist on the station.
+`YOUR_STATION` is only a placeholder used in the public configuration.
 
-The public configuration uses:
+It is **not** the station name of DARK ZERO RADIO and it is not a fixed value.
+
+Every radio station using this project must enter its **own radio station / AzuraCast station identifier** here.
+
+In simple terms:
+
+**YOUR_STATION = YOUR OWN RADIO STATION**
+
+For example, the public configuration uses:
 
 `/var/azuracast/stations/YOUR_STATION/media/start_ad_break.mp3`
 
-The `start_ad_break.mp3` file must be placed in the corresponding station media directory.
+You must replace `YOUR_STATION` with the identifier of **your own radio station**.
+
+For example:
+
+`/var/azuracast/stations/YOUR_OWN_STATION/media/start_ad_break.mp3`
+
+The exact identifier depends on your own AzuraCast installation.
 
 ### Basic Setup
 
 1. Download or use the included `START_AD_BREAK.mp3` file from this repository.
 2. Rename it to `start_ad_break.mp3` if necessary.
 3. Place `start_ad_break.mp3` on the AzuraCast server.
-4. Place it in the media directory of the appropriate station.
-5. Replace `YOUR_STATION` with the correct station identifier.
+4. Place it in the media directory of **your own AzuraCast station**.
+5. Replace `YOUR_STATION` with the correct identifier of **your own radio station**.
 6. Add the Liquidsoap code to the station's custom Liquidsoap configuration.
 7. Save the configuration.
 8. Restart the station's broadcasting / Liquidsoap process.
 9. The automation runs automatically.
 
 ### Important
+
+`YOUR_STATION` must be replaced with the station identifier belonging to the radio station using the configuration.
+
+Do **not** leave `YOUR_STATION` unchanged.
+
+Every station using this project has to enter its **own station identifier**.
 
 AzuraCast installations can use different station names, paths and configurations.
 
@@ -294,7 +318,6 @@ Particular attention was given to:
 - operation without reconnecting the DJ stream
 - operation without a START_AD_BREAK playlist
 - automatic operation using only the `start_ad_break.mp3` file
-- use of the included Commercial Break MP3
 
 The current public configuration uses a **25-minute interval**.
 
