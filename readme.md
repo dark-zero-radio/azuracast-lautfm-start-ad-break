@@ -21,7 +21,7 @@ The live DJ can continue broadcasting normally while the START_AD_BREAK trigger 
 - **Live DJ and AutoDJ.** Track changes are detected in both modes (AutoDJ via `on_track`, live DJ via `on_metadata`).
 - **Only one trigger per break.** A break cannot be triggered twice.
 - **No duplicate titles after the break.** The switch uses `replay_metadata=false`, so the current title is not sent a second time after the break.
-- **New default interval: 35 minutes (2100 seconds).**
+- **Default interval: 25 minutes (1500 seconds).**
 
 ## Why This Project?
 
@@ -48,7 +48,7 @@ The solution is independent of the DJ software being used.
 - Works during AUTODJ operation
 - Only **one** trigger per break (no double triggering)
 - **No duplicate titles** after the break (`replay_metadata=false`)
-- Automatic trigger at a configurable interval (default: 35 minutes)
+- Automatic trigger at a configurable interval (default: 25 minutes)
 - Designed for AzuraCast and Liquidsoap
 - Independent of the DJ software being used
 - No DJ stream reconnection required
@@ -245,10 +245,10 @@ Always check the paths used by your own installation before starting Liquidsoap.
 
 The default interval is:
 
-**2100 seconds = 35 minutes**
+**1500 seconds = 25 minutes**
 
 ```liquidsoap
-your_station_break_interval = 2100. # 35 Minuten (in Sekunden)
+your_station_break_interval = 1500. # 25 Minuten (in Sekunden)
 ```
 
 Examples:
@@ -300,7 +300,7 @@ Particular attention was given to:
 - operation without reconnecting the DJ stream
 - operation without a START_AD_BREAK playlist
 
-The current public configuration uses a **35-minute interval**.
+The current public configuration uses a **25-minute interval**.
 
 ## Project
 
