@@ -13,13 +13,8 @@
 #
 # Dieses Projekt wurde von Paul Paradoxx entwickelt.
 #
-# Nutzung, Weitergabe, Veränderung oder Veröffentlichung
-# dieses Codes ist nur mit vorheriger ausdrücklicher
-# Genehmigung des Erstellers gestattet.
-#
-# Eine Veröffentlichung oder Weitergabe als eigenes Projekt
-# sowie die Entfernung des Urheberhinweises ist ohne
-# Genehmigung nicht gestattet.
+# Kostenlos nutzbar, anpassbar und weitergebbar.
+# Bitte diesen Urheberhinweis erhalten. Details: Datei "licence".
 #
 # ------------------------------------------------------------
 # STATION
