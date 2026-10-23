@@ -316,15 +316,11 @@ The project was developed for the DARK ZERO RADIO broadcasting environment and i
 
 This project and its code were created by **Paul Paradoxx**.
 
-**Use, modification, redistribution or publication of this project or its source code is only permitted with prior explicit permission from the author.**
+The code and the included `START_AD_BREAK.mp3` may be **used, modified and shared free of charge**.
 
-Redistribution or publication as your own project is not permitted without permission.
+The only request: please keep the copyright notice **© 2026 Paul Paradoxx / DARK ZERO RADIO** in the code.
 
-Removal of the copyright or author information is not permitted without permission.
-
-The included Commercial Break audio file is also part of this project and is provided by **Paul Paradoxx / DARK ZERO RADIO**.
-
-The audio file may not be redistributed, modified, published or used in another project without prior explicit permission from the author.
+See the `licence` file for details.
 
 ## Disclaimer
 
