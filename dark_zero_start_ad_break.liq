@@ -25,7 +25,7 @@
 # ------------------------------------------------------------
 # BETRIEB
 # ------------------------------------------------------------
-# - START_AD_BREAK alle 35 Minuten fällig (Intervall einstellbar)
+# - START_AD_BREAK alle 25 Minuten fällig (Intervall einstellbar)
 # - die Werbung wird VORGELADEN, sobald der Break fällig ist
 # - der Break startet erst beim NÄCHSTEN TITELWECHSEL
 #   -> schneidet nicht mehr mitten in einen Song
@@ -37,7 +37,7 @@
 # ============================================================
 
 your_station_ad_break_file  = "/var/azuracast/stations/YOUR_STATION/media/start_ad_break.mp3"
-your_station_break_interval = 2100. # 35 Minuten (in Sekunden)
+your_station_break_interval = 1500. # 25 Minuten (in Sekunden)
 
 your_station_last_break = ref(time())
 your_station_break_due  = ref(false)
